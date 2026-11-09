@@ -1,0 +1,258 @@
+:root {
+  color-scheme: light dark;
+  --paper: #f6f4ef;
+  --surface: #fffefb;
+  --ink: #1d2320;
+  --muted: #5f6862;
+  --rule: #d9d5ca;
+  --accent: #17453a;
+  --accent-ink: #ffffff;
+  --accent-hover: #0f332a;
+  --danger: #a32a1f;
+  --focus: #2b7a66;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --paper: #141716;
+    --surface: #1c201e;
+    --ink: #e9e7e0;
+    --muted: #a0a8a2;
+    --rule: #343a37;
+    --accent: #8fd0bb;
+    --accent-ink: #10231d;
+    --accent-hover: #a9dfcd;
+    --danger: #f19a8f;
+    --focus: #8fd0bb;
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  background: var(--paper);
+  color: var(--ink);
+  font: 16px/1.55 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+
+.masthead {
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+  padding: 18px 32px 14px;
+}
+
+.wordmark {
+  margin: 0;
+  font: 600 22px/1.2 Georgia, "Times New Roman", serif;
+  letter-spacing: -0.01em;
+}
+
+.tagline {
+  margin: 0;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.workspace {
+  flex: 1;
+  min-height: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  padding: 0 32px 24px;
+}
+
+.panel {
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  background: var(--surface);
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+}
+
+.panel-title {
+  margin: 0;
+  padding: 14px 20px 0;
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.panel-body {
+  flex: 1;
+  min-height: 0;
+  width: 100%;
+  padding: 10px 20px 20px;
+  overflow-y: auto;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  resize: none;
+}
+
+.panel-body:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: -2px;
+  border-radius: 4px;
+}
+
+.panel-body::placeholder {
+  color: var(--muted);
+}
+
+#output {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.empty {
+  margin: 0;
+  color: var(--muted);
+}
+
+.result[aria-busy="true"] #output::after {
+  content: "";
+  display: inline-block;
+  width: 2px;
+  height: 1.05em;
+  margin-left: 2px;
+  vertical-align: text-bottom;
+  background: var(--accent);
+  animation: blink 1s steps(2, start) infinite;
+}
+
+@keyframes blink {
+  to {
+    visibility: hidden;
+  }
+}
+
+.panel-footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 12px 20px;
+  border-top: 1px solid var(--rule);
+}
+
+.counter {
+  color: var(--muted);
+  font-size: 14px;
+  font-variant-numeric: tabular-nums;
+}
+
+.counter.is-over {
+  color: var(--danger);
+  font-weight: 600;
+}
+
+.adjustments {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.button {
+  min-height: 38px;
+  padding: 7px 14px;
+  border: 1px solid var(--rule);
+  border-radius: 5px;
+  background: transparent;
+  color: var(--ink);
+  font: inherit;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.button:hover:not(:disabled) {
+  border-color: var(--accent);
+}
+
+.button:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 2px;
+}
+
+.button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.button-primary,
+.button-copy {
+  border-color: var(--accent);
+  background: var(--accent);
+  color: var(--accent-ink);
+  font-weight: 600;
+}
+
+.button-primary:hover:not(:disabled),
+.button-copy:hover:not(:disabled) {
+  background: var(--accent-hover);
+}
+
+.panel-heading {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 2px 16px;
+  padding: 14px 20px 0;
+}
+
+.panel-heading .panel-title {
+  padding: 0;
+}
+
+.status {
+  margin: 0;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.status.is-error {
+  color: var(--danger);
+}
+
+@media (max-width: 800px) {
+  html,
+  body {
+    height: auto;
+  }
+
+  .masthead {
+    flex-direction: column;
+    gap: 2px;
+    padding: 16px 16px 12px;
+  }
+
+  .workspace {
+    grid-template-columns: 1fr;
+    padding: 0 16px 16px;
+  }
+
+  .panel-body {
+    min-height: 38vh;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .result[aria-busy="true"] #output::after {
+    animation: none;
+  }
+}

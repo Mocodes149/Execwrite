@@ -1,0 +1,22 @@
+[project]
+name = "execwrite"
+version = "0.1.0"
+description = "Transforme des communications professionnelles en textes clairs, concis et prêts à envoyer."
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "anthropic>=2.6.0",
+    "fastapi>=0.162.2",
+    "python-dotenv>=1.2.4",
+    "uvicorn[standard]>=0.54.0",
+]
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+testpaths = ["tests"]
+
+[dependency-groups]
+dev = [
+    "httpx>=0.28.1",
+    "pytest>=9.2.0",
+]

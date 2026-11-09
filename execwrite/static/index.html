@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>ExecWrite</title>
+    <meta name="description" content="Transformez un brouillon en communication claire, concise et prête à envoyer." />
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <header class="masthead">
+      <h1 class="wordmark">ExecWrite</h1>
+      <p class="tagline">L'essentiel d'abord. Rien de superflu.</p>
+    </header>
+
+    <main class="workspace">
+      <section class="panel" aria-labelledby="draft-label">
+        <label class="panel-title" id="draft-label" for="draft">Votre brouillon</label>
+        <textarea
+          id="draft"
+          class="panel-body"
+          placeholder="Collez ici votre mail, votre message ou vos idées brutes."
+          spellcheck="true"
+          autofocus
+        ></textarea>
+        <div class="panel-footer">
+          <span id="word-count" class="counter">0 / 2 000 mots</span>
+          <button id="submit" class="button button-primary" type="button" disabled>Reformuler</button>
+        </div>
+      </section>
+
+      <section class="panel panel-result" aria-labelledby="result-label">
+        <div class="panel-heading">
+          <h2 class="panel-title" id="result-label">Version concise</h2>
+          <p id="status" class="status" role="status"></p>
+        </div>
+        <div id="result" class="panel-body result" tabindex="0" aria-live="polite" aria-busy="false">
+          <p id="empty" class="empty">Votre texte retravaillé apparaîtra ici.</p>
+          <span id="output"></span>
+        </div>
+        <div class="panel-footer">
+          <div class="adjustments" role="group" aria-label="Ajuster le ton">
+            <button class="button" type="button" data-adjustment="shorter" disabled>Plus court</button>
+            <button class="button" type="button" data-adjustment="formal" disabled>Plus formel</button>
+            <button class="button" type="button" data-adjustment="direct" disabled>Plus direct</button>
+          </div>
+          <button id="copy" class="button button-copy" type="button" disabled>Copier</button>
+        </div>
+      </section>
+    </main>
+
+    <script src="/app.js" defer></script>
+  </body>
+</html>
